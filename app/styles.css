@@ -1,0 +1,30 @@
+body {
+	background-color: #c6d4ca;
+	font-family: 'Raleway';
+}
+
+.title {
+	margin-top: 78px;
+}
+
+canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+canvas:hover {
+    cursor: pointer;
+}
+
+#lineDrawing {
+    width: 300px;
+	height: 300px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
