@@ -3,28 +3,30 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const VENDOR_LIBS = ['react', 'react-dom'];
-
 module.exports = {
+  // devtool: 'cheap-module-eval-source-map',
   entry: {
-    bundle: './app/index.js',
-    vendor: VENDOR_LIBS
+    use: 'webpack-hot-middleware/client',
+    bundle: path.join(__dirname, 'app'),
+    vendor: ['react', 'react-dom']
   },
   output: {
-    path: path.join(__dirname, 'build'),
-    filename: '[name].[chunkhash].js'
+    path: path.join(__dirname, 'public'),
+    filename: '[name].[hash].js',
+    // filename: 'bundle.js',
+    publicPath: '/public/'
   },
   module: {
     rules: [
       {
-        use: 'babel-loader',
+        use: ['react-hot-loader', 'babel-loader'],
         test: /\.js$/,
         exclude:/node_modules/
       },
-      {
-        use: ['style-loader', 'css-loader'],
-        test:/\.css$/
-      },
+      // {
+      //   use: ['style-loader', 'css-loader'],
+      //   test:/\.css$/
+      // },
       {
 				use: [
 					{
@@ -46,10 +48,11 @@ module.exports = {
       names: ['vendor', 'manifest']
     }),
     new HtmlWebpackPlugin({
-      template: 'app/assets/index.html'
-      // filename: 'index.html',
-      // inject: 'body'
+      template: 'app/assets/index.html',
+      filename: 'index.html',
+      inject: 'body'
     }),
-    new ExtractTextPlugin('style.css')
+    new ExtractTextPlugin('styles.css'),
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
