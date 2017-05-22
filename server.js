@@ -1,34 +1,46 @@
 'use strict';
 
+//express
 const express = require('express');
 const app = express();
-const path = require('path');
 
+//webpack
 const webpack = require('webpack');
 const config = require('./webpack.config');
 const compiler = webpack(config);
-
 app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath,
   stats: {
         colors: true
     }
-}));
-
+  }
+));
 app.use(require('webpack-hot-middleware')(compiler));
 
-// app.use(express.static('public'));
+//path
+// The path module exposes a join method that allows us to chain together
+// variables to create a file path. The join method is used instead of
+// specifying a full file path, as this avoids issues of operating systems
+// working differently with forward slashes and backslashes.
+const path = require('path');
 
-// app.use(express.static(path.join('public')));
-//
+//static files
+app.use(express.static('public'));
+
 // app.use('/assets', express.static('app/assets'));
 
+ // This will tell Express to match any routes for files found in this folder
+ // and deliver the files directly to the browser. This should be done before
+ // any other routes are defined and before the server is set up to listen.
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((_req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+
+
+// errors
 app.use((err, _req, res, _next) => {
   if (err.output && err.output.statusCode) {
     return res
@@ -48,6 +60,7 @@ app.use((err, _req, res, _next) => {
   res.sendStatus(500);
 });
 
+// set port and serve
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {

@@ -19,14 +19,26 @@ module.exports = {
   module: {
     rules: [
       {
-        use: ['react-hot-loader', 'babel-loader'],
         test: /\.js$/,
+        use: ['react-hot-loader', 'babel-loader'],
         exclude:/node_modules/
       },
+      // {
+      //   use: ['style-loader', 'css-loader'],
+      //   test:/\.css$/
+      // },
       {
-        use: ['style-loader', 'css-loader'],
-        test:/\.css$/
+        test:/\.css$/,
+        // use: 'css-loader'
+        use: ExtractTextPlugin.extract ({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
       },
+      // {
+      //   test: /\.css$/,
+      //   loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
+      // },
       {
 				use: [
 					{
@@ -47,12 +59,13 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest']
     }),
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: 'app/assets/index.html',
       filename: 'index.html',
       inject: 'body'
-    }),
+    }
+  ),
     new ExtractTextPlugin('styles.css'),
-    new webpack.HotModuleReplacementPlugin()
   ]
 };
