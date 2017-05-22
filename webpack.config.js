@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  // devtool: 'cheap-module-eval-source-map',
   entry: {
     use: 'webpack-hot-middleware/client',
     bundle: path.join(__dirname, 'app'),
@@ -13,7 +12,6 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'public'),
     filename: '[name].[hash].js',
-    // filename: 'bundle.js',
     publicPath: '/public/'
   },
   module: {
@@ -23,22 +21,13 @@ module.exports = {
         use: ['react-hot-loader', 'babel-loader'],
         exclude:/node_modules/
       },
-      // {
-      //   use: ['style-loader', 'css-loader'],
-      //   test:/\.css$/
-      // },
       {
         test:/\.css$/,
-        // use: 'css-loader'
         use: ExtractTextPlugin.extract ({
           fallback: 'style-loader',
           use: 'css-loader'
         })
       },
-      // {
-      //   test: /\.css$/,
-      //   loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')
-      // },
       {
 				use: [
 					{

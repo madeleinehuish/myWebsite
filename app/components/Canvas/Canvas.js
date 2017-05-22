@@ -40,7 +40,7 @@ class Canvas extends Component {
             //
             // />
             // <img src={'/app/assets/images/sample.png'} id="lineDrawing"></img>
-            <div>Hello World</div>
+            <div>Canvas</div>
         );
     }
 }
