@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Canvas from './Canvas/Canvas';
+import image from '../assets/images/basicLineDrawing.png';
 
 class App extends Component {
 	constructor(props) {
@@ -28,7 +29,8 @@ class App extends Component {
 				<div className="row">
 					<div className="col-lg-offset-1 col-lg-10 col-lg-offset-1">
 		      	<h1 className="text-center title">madeleine_huish.js</h1>
-						<Canvas />
+						<img src={image} />
+						{/* <Canvas /> */}
 					</div>
 				</div>
 			</div>
