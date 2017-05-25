@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Canvas from './Canvas/Canvas';
 import Menu from './Menu';
 import Header from './Header';
+// import navbarInstance from './HeaderReact';
 
 class App extends Component {
 	constructor(props) {
@@ -27,11 +28,12 @@ class App extends Component {
 
 		return (
 			<div>
+				{/* <navbarInstance/> */}
 				<Header/>
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-offset-1 col-lg-10 col-lg-offset-1">
-			      	<h1 className="text-center title">test</h1>
+			      	<h1 className="text-center title">Yay!!!</h1>
 							{/* <Menu /> */}
 
 							{/* <Canvas /> */}
