@@ -28,3 +28,15 @@ canvas:hover {
     margin-right: auto;
     display: block;
 }
+
+#one {
+	margin-top: 165px;
+}
+
+#two {
+	margin-top: 175px;
+}
+
+.navbar {
+	background-color: #a9beaf;
+}

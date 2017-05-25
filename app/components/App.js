@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Canvas from './Canvas/Canvas';
-import image from '../assets/images/basicLineDrawing.png';
+import Menu from './Menu';
+import Header from './Header';
 
 class App extends Component {
 	constructor(props) {
@@ -25,12 +26,16 @@ class App extends Component {
 	render() {
 
 		return (
-			<div className="container">
-				<div className="row">
-					<div className="col-lg-offset-1 col-lg-10 col-lg-offset-1">
-		      	<h1 className="text-center title">madeleine_huish.js</h1>
-						<img src={image} />
-						{/* <Canvas /> */}
+			<div>
+				<Header/>
+				<div className="container">
+					<div className="row">
+						<div className="col-lg-offset-1 col-lg-10 col-lg-offset-1">
+			      	<h1 className="text-center title">test</h1>
+							{/* <Menu /> */}
+
+							{/* <Canvas /> */}
+						</div>
 					</div>
 				</div>
 			</div>
